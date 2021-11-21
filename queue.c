@@ -14,7 +14,7 @@ struct node {
 
 
 // Push an element to queue
-void push(Queue ** q) {
+void push(Queue ** q) { // NEEDED //Add offset
 	Queue * new_q = (Queue *) malloc(sizeof(Queue));
 	Queue * curr = *q;
 	if(new_q == NULL) { // Handles allocation issue
@@ -25,7 +25,7 @@ void push(Queue ** q) {
 	if(curr == NULL) { // if Queue is empty - New Queue
 		new_q->id = 0;
 		*q = new_q;
-	} else { // Instead if Queue already empty
+	} else { // Instead if Queue is not empty
 		while(curr != NULL) {
 			if(curr->next == NULL) { // If it has hit the current tail
 				new_q->id = curr->id+1;
