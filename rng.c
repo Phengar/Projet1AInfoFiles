@@ -21,7 +21,7 @@ void getseed(){ 							// sets up rand() by getting a true random seed from seed
 
 float random_unif(){
 	float tmp =  (float) rand();
-	return  tmp/2147483647;
+	return  tmp/RAND_MAX;
 }
 
 float random_expo(float lamb){
