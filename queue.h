@@ -1,6 +1,6 @@
-typedef struct node Queue;
+typedef struct node Queue; // Queue is an alias to struct node
 
-void push(Queue ** q);
+void push(Queue ** q, int offset);
 
 void pop(Queue ** q);
 

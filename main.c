@@ -5,12 +5,12 @@
 
 int main() {
 	/*Queue * q = NULL;
-	push(&q);
-	push(&q);
-	push(&q);
-	push(&q);
-	push(&q);
-	push(&q);
+	push(&q, 0);
+	push(&q, 0);
+	push(&q, 0);
+	push(&q, 0);
+	push(&q, 0);
+	push(&q, 0);
 	print(&q);
 	pop(&q);
 	print(&q);

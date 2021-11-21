@@ -12,9 +12,13 @@ struct node {
 	int id;
 };
 
-
-// Push an element to queue
-void push(Queue ** q) {
+// Pushes an element to queue
+/*
+	offset serves in case the whole queue has
+	been popped at least once. So that once we push
+	new values into queue they don't start with id: 0
+*/
+void push(Queue ** q, int offset) {
 	Queue * new_q = (Queue *) malloc(sizeof(Queue));
 	Queue * curr = *q;
 	if(new_q == NULL) { // Handles allocation issue
@@ -22,10 +26,10 @@ void push(Queue ** q) {
 		return;
 	}
 	new_q->next = NULL; // The new element will be pushed at the end
-	if(curr == NULL) { // if Queue is empty - New Queue
-		new_q->id = 0;
+	if(curr == NULL) { // if Queue is empty - in case of a new queue
+		new_q->id = offset;
 		*q = new_q;
-	} else { // Instead if Queue already empty
+	} else { // Instead if Queue is not empty
 		while(curr != NULL) {
 			if(curr->next == NULL) { // If it has hit the current tail
 				new_q->id = curr->id+1;
@@ -59,12 +63,12 @@ void print(Queue ** q) {
 /*
 int main() {
 	Queue * q = NULL;
-	push(&q);
-	push(&q);
-	push(&q);
-	push(&q);
-	push(&q);
-	push(&q);
+	push(&q, 0);
+	push(&q, 0);
+	push(&q, 0);
+	push(&q, 0);
+	push(&q, 0);
+	push(&q, 0);
 	print(&q);
 	pop(&q);
 	print(&q);

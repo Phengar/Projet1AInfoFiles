@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "save.h"
 
+// Raw data structure
 struct raw {
 	int id; // Customer's id
 	int day; // Day
@@ -14,6 +15,7 @@ struct raw {
 
 };
 
+// Processed data structure
 struct processed {
 	int mean_s; // Queue mean size
 	int max_s; // Queue max size
@@ -22,6 +24,8 @@ struct processed {
 	int mean_service_time; // Mean service time
 };
 
+
+// Saves raw data array into .txt file
 void save_raw(char * fname, Raw * data, int size) {
 	FILE * file = fopen(fname, "w");
 	if(file == NULL) {
@@ -34,6 +38,7 @@ void save_raw(char * fname, Raw * data, int size) {
 	fclose(file);
 }
 
+// Saves processed data into .txt file
 void save_processed(char * fname, Processed data) {
 	FILE * file = fopen(fname, "w");
 	if(file == NULL) {
@@ -44,6 +49,7 @@ void save_processed(char * fname, Processed data) {
 	fclose(file);
 }
 
+// Loads raw data array from .txt file
 void load_raw(char * fname, Raw * data, int size) {
 	FILE * file = fopen(fname, "r");
 	if(file == NULL) {

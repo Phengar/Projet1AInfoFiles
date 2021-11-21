@@ -1,6 +1,6 @@
-typedef struct raw Raw;
+typedef struct raw Raw; // Raw is an alias to struct raw
 
-typedef struct processed Processed;
+typedef struct processed Processed; // Processed is an alias to struct processed
 
 void save_raw(char * fname, Raw * data, int size);
 
