@@ -5,7 +5,7 @@
 #include <sys/random.h>
 
 //#define RAND_MAX 32767   //RAND_MAX has base value of 2147483647
-
+#define lambda 0.001
 
 void getseed(){ 							// sets up rand() by getting a true random seed from seed_generator
 	FILE *file;
@@ -19,17 +19,20 @@ void getseed(){ 							// sets up rand() by getting a true random seed from seed
 	srand(seed);							// sets up rand()
 }
 
-float random_gen(){
+float random_unif(){
 	float tmp =  (float) rand();
 	return  tmp/2147483647;
 }
 
+float random_expo(float lamb){
+	return -logf(1-random_unif())/lamb;
+}
 
 
 void main(){
 	getseed();
 	for(int i=0; i<50; i++){
-		printf("%f\n", random_gen());
+		printf("%f\n", random_expo(lambda));
 	}
 	//printf("unsigned int with good value: %c\n", t);
 }

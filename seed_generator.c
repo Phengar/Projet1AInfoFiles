@@ -4,8 +4,6 @@
 #include <time.h>
 #include <sys/random.h>
 
-#define lambda 0.5
-
 void main(){
 	/*time_t t;
 	srand(time(NULL));
@@ -16,4 +14,4 @@ void main(){
     unsigned int t;
     getrandom(&t, sizeof(unsigned int), GRND_NONBLOCK) ==-1 ? perror("Entropy pool not set up") : ""; //create crypto quality randomness // fill the adress of t with random bytes
     printf("%d\n", &t);
-}	
+}
