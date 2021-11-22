@@ -5,12 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "queue.h"
-
-// Queue Structure
-struct node {
-	struct node * next;
-	int id;
-};
+#include "stack.h"
 
 // Pushes an element to queue
 /*
@@ -41,8 +36,8 @@ void push(Queue ** q, int offset) {
 	}
 }
 
-// Pop queue head
-void pop(Queue ** q) {
+// Pop queue head and pushes to stack
+void pop(Queue ** q, char * fname) {
 	if(*q == NULL) { // Cannot pop an empty queue
 		printf("Queue already empty.\n");
 		return;

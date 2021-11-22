@@ -5,26 +5,6 @@
 #include <stdio.h>
 #include "save.h"
 
-// Raw data structure
-struct raw {
-	int id; // Customer's id
-	int day; // Day
-	int at; // Arrival time
-	int st; // Service begin time
-	int et; // End time
-
-};
-
-// Processed data structure
-struct processed {
-	int mean_s; // Queue mean size
-	int max_s; // Queue max size
-	int client_total; // Number of client during the day
-	int angry_client; // Number of angry client
-	int mean_service_time; // Mean service time
-};
-
-
 // Saves raw data array into .txt file
 void save_raw(char * fname, Raw * data, int size) {
 	FILE * file = fopen(fname, "w");
