@@ -85,8 +85,16 @@ int main(int argc, char * argv[]) {
 	printf("\n");
 
 	Stack * s2 = NULL;
+	push_stack(&s2, &r1);
+	push_stack(&s2, &r2);
+	print_stack(&s2);
+	printf("\n %d \n", size_stack(&s2));
+	pop_stack(&s2);
+	pop_stack(&s2);
+	printf("\n\n");
 	printf("Trying to load raw data from file.\n");
 	load_raw(raw_file, &s2);
+	printf("\n %d \n", size_stack(&s2));
 	printf("Result :\n");
 	print_stack(&s2);
 }

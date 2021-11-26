@@ -13,6 +13,8 @@ void push_stack(Stack ** s, Raw * r);
 
 void pop_stack(Stack ** s);
 
+int size_stack(Stack ** s);
+
 void print_stack(Stack ** s);
 
 #endif
