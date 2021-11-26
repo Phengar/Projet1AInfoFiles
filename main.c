@@ -37,7 +37,14 @@ float random_srvtime(){
 	return random_unif()*(maxsrv-minsrv)+minsrv;
 }
 
-
+/*int sup(float a, float b, * value){
+	if (a>b){
+		DO SOMETHING WITH VALUE
+		return 1;
+	}
+	DO SOMETHING ELSE WITH VALUE
+	return 0;
+} WIP*/
 
 
 
@@ -48,9 +55,10 @@ int main(int argc, char * argv[]) {
 		return 0;
 	}
 	getseed();
-	Raw round;
+	
 	int day = 1;
 	int time =0;
+
 
 
 
