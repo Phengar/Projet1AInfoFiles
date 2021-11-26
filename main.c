@@ -9,6 +9,8 @@
 
 
 #define lambda 0.001
+#define minsrv 40
+#define maxsrv 300 
 
 void getseed(){ 							// sets up rand() by getting a true random seed from seed_generator
 	FILE *file;
@@ -31,6 +33,12 @@ float random_expo(float lamb){
 	return -logf(1-random_unif())/lamb;
 }
 
+float random_srvtime(){
+	return random_unif()*(maxsrv-minsrv)+minsrv;
+}
+
+
+
 
 
 
@@ -40,7 +48,10 @@ int main(int argc, char * argv[]) {
 		return 0;
 	}
 	getseed();
-	Raw 
+	Raw round;
+	int day = 1;
+	int time =0;
+
 
 
 	char * raw_file = "raw.txt", * processed_file = "processed.txt";
