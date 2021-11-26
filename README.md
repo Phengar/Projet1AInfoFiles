@@ -22,5 +22,5 @@ Projet d'informatique 1A Files d'attente
 | save.h    | void save_raw(char * fname, Stack ** s)       | Save Stack (Raw) elements to fname (.txt file)   |
 | save.h    | void save_processed(char * fname, Processed * data)    | Save Processed p (/!\ p is a single element) elements to fname (.txt file)|
 | save.h    | void load_raw(char * fname, Stack ** s) | load fname (.txt file) to the Stack s |
-| save.h    | /!\ .txt format : "%d %d %d %d %d\n". If it a Raw data file it may contain few lines|
+| save.h    | /!\ .txt format : "%d %d %d %d %d\n". If it's a Raw data file it may contain few lines|
 | :---      |    :----:   |          ---: |
