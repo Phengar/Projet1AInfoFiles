@@ -1,11 +1,18 @@
+#ifndef QUEUE_H_ // To avoid multiple including
+#define QUEUE_H_
+
+#include "stack.h"
+
 // Queue Structure
-typedef struct {
-	struct node * next;
-	int id;
+typedef struct queue_node {
+	struct queue_node * next;
+	Raw * data;
 } Queue;
 
-void push(Queue ** q, int offset);
+void push_queue(Queue ** q, Raw * r);
 
-void pop(Queue ** q, char * fname);
+void pop_queue(Queue ** q, Stack ** s);
 
-void print(Queue ** q);
+void print_queue(Queue ** q);
+
+#endif

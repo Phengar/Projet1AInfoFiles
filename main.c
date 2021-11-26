@@ -1,51 +1,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "queue.h"
+#include "stack.h"
 #include "save.h"
+#include "data.h"
 
 int main() {
-	/*Queue * q = NULL;
-	push(&q, 0);
-	push(&q, 0);
-	push(&q, 0);
-	push(&q, 0);
-	push(&q, 0);
-	push(&q, 0);
-	print(&q);
-	pop(&q);
-	print(&q);
-	pop(&q);
-	print(&q);
-	pop(&q);
-	print(&q);
-	pop(&q);
-	print(&q);
-	pop(&q);
-	print(&q);
-	pop(&q);
-	print(&q);
-	pop(&q);
-	print(&q);
-	return 0;*/
-	char * fname_raw = "raw.txt";//, *fname_processed = "processed.txt";
-	//Processed processed = {1, 2, 3, 4, 5};
+	char * raw_file = "raw.txt", * processed_file = "processed.txt";
 	
-	Raw data[2];
-	/*data[0].id = 1;
-	data[0].day = 2;
-	data[0].at = 3;
-	data[0].st = 4;
-	data[0].et = 5;
+	Queue * q = NULL;
+	Stack * s = NULL;
+	Raw r1 = {1, 2, 3, 4, 5}, r2 = {6, 7, 8, 9, 10};
+	Processed p = {11, 12, 13, 14, 15};
 
-	data[1].id = 6;
-	data[1].day = 7;
-	data[1].at = 8;
-	data[1].st = 9;
-	data[1].et = 10;*/
+	print_raw(&r1);
+	print_processed(&p);
 
-	//save_raw(fname_raw, data, 2);
-	//save_processed(fname_processed, processed);
-	load_raw(fname_raw, data, 2);
-	printf("%d %d %d %d %d\n", data[0].id, data[0].day, data[0].at, data[0].st, data[0].et);
-	return 0;
+	printf("\n");
+
+	printf("Pushing two elements to queue :\n");
+	push_queue(&q, &r1);
+	push_queue(&q, &r2);
+	print_queue(&q);
+
+	printf("\n");
+
+	pop_queue(&q, &s);
+	printf("Queue after one pop :\n");
+	print_queue(&q);
+	printf("Stack after one queue pop :\n");
+	print_stack(&s);
+	pop_queue(&q, &s);
+	printf("Queue after two pop :\n");
+	print_queue(&q);
+	printf("Stack after two queue pop :\n");
+	print_stack(&s);
+
+	printf("\n");
+
+	printf(">> Saving raw data to : %s\n", raw_file);
+	save_raw(raw_file, &s);
+	printf(">> Saved... Hopefully !\n\n");
+	printf(">> Saving processed data to : %s\n", processed_file);
+	save_processed(processed_file, &p);
+	printf(">> Saved... I hope so...\n");
+
+	printf("\n");
+
+	Stack * s2 = NULL;
+	printf("Trying to load raw data from file.\n");
+	load_raw(raw_file, &s2);
+	printf("Result :\n");
+	print_stack(&s2);
 }
