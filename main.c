@@ -5,7 +5,44 @@
 #include "save.h"
 #include "data.h"
 
-int main() {
+
+
+
+#define lambda 0.001
+
+void getseed(){ 							// sets up rand() by getting a true random seed from seed_generator
+	FILE *file;
+	char t[100];
+	//printf("unisgned int just created: %c\n", t);
+	file= popen("./seed_generator", "r");   // runs seed_generator and gets a true random seed
+	fgets(t, sizeof(t), file);
+	int seed= atoi(t);                      // transforms the string seed to int seed
+	//printf("%d", seed);
+	pclose(file);
+	srand(seed);							// sets up rand()
+}
+
+float random_unif(){
+	float tmp =  (float) rand();
+	return  tmp/RAND_MAX;
+}
+
+float random_expo(float lamb){
+	return -logf(1-random_unif())/lamb;
+}
+
+
+
+
+int main(int argc, char * argv[]) {
+	if (argc != 2){
+		printf("use 'number of days' to run the simulation");
+		return 0;
+	}
+	getseed();
+	Raw 
+
+
 	char * raw_file = "raw.txt", * processed_file = "processed.txt";
 	
 	Queue * q = NULL;
