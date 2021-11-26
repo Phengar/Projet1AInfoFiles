@@ -3,6 +3,7 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "save.h"
 
 // Saves raw data array into .txt file
@@ -33,18 +34,25 @@ void save_processed(char * fname, Processed * data) {
 
 // Loads raw data array from .txt file
 void load_raw(char * fname, Stack ** s) {
+	printf("I'm alive\n");
 	FILE * file = fopen(fname, "r");
 	if(file == NULL) {
 		printf("Cannot open the file.\n");
 		return;
 	}
 	int endOfFile = 0;
-	Raw tmp;
+	Raw * tmp = (Raw *) malloc(sizeof(Raw));
+	if(tmp == NULL) { // Handles allocation issues
+		printf("Cannot allocate memory.\n");
+		return;
+	}
 	while(endOfFile != -1) {
-		endOfFile = fscanf(file, "%d %d %d %d %d\n", &tmp.id, &tmp.day, &tmp.at, &tmp.st, &tmp.et);
-		printf("tmp.id = %d\n", tmp.id);
+		endOfFile = fscanf(file, "%d %d %d %d %d\n", &tmp->id, &tmp->day, &tmp->at, &tmp->st, &tmp->et);
+		printf("%d %d %d %d %d %d\n", endOfFile, tmp->id, tmp->day, tmp->at, tmp->st, tmp->et);
 		if(endOfFile != -1) {
-			push_stack(s, &tmp);
+			push_stack(s, tmp);
+			printf("STP : ");
+			print_raw(tmp);
 		}
 	}
 	fclose(file);
