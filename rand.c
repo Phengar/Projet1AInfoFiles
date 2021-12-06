@@ -21,7 +21,7 @@ int random_int(int minserv, int maxserv) {
 	return minserv + (rand() % (maxserv - minserv + 1));
 }
 
-// Generates a random number accoring the uniform law
+// Generates a random number according the uniform law
 double random_unif() {
 	return ((double) rand()) / RAND_MAX;
 }
