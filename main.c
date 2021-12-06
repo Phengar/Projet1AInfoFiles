@@ -17,14 +17,9 @@
 // Constants
 #define DAY_LENGTH 32400 // 9 Hours // In seconds
 #define HOST_TIME_LIMIT 30600 // 8h30 after opening, the queue no longer accepts new clients
-
-#define MAX_TRY 50 // Maximum number of tries to generate a new customer
-// In case its arrival time is above the 17h00 time limit
-// The algorithm will try to regenerate a customer
 ////////////////////////////////////////////////////////////////////////////////////////
 int min2sec(double minutes);
 double seconds(double seconds);
-int try_generate(double lambda, int last_at);
 void simulate(int days);
 void disp_menu();
 void menu();
@@ -41,18 +36,6 @@ int min2sec(double minutes) {
 double sec2min(double seconds) {
 	return seconds / 60;
 }
-
-// Tries to generate new customer's arrival time
-int try_generate(double lambda, int last_at) {
-	int tmp_at = (int) (random_expo(lambda)), try_count = 0;
-	//// In case it cannot generate someone
-	while(try_count < MAX_TRY && tmp_at + last_at > HOST_TIME_LIMIT) {
-		tmp_at = (int) (random_expo(lambda));
-		try_count++;
-	}
-	return tmp_at;
-}
-
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // Simulates the whole queue logic. Please note that every actual_time will be expressed
@@ -107,7 +90,7 @@ void simulate(int days) {
 			//////// Incoming clients generation ////////
 			if(last_at < HOST_TIME_LIMIT) { // New customers can come in
 
-				tmp_at = try_generate(lambda, last_at); // Tries to generate the new client arrival time
+				tmp_at = (int) (random_expo(lambda)); // Tries to generate the new client arrival time
 
 				if(tmp_at + last_at <= HOST_TIME_LIMIT) { // Able to generate a customer
 					queue_size++; // A new customer pops in, the queue length increases
@@ -137,8 +120,8 @@ void simulate(int days) {
 			}
 			/////////////////////////////////////////////
 			//// Statistics
-			if(stats.max_s <= client_id) { // Calculating max queue size
-				stats.max_s = client_id-1;
+			if(stats.max_s < queue_size) { // Calculating max queue size
+				stats.max_s = queue_size-1;
 			}
 
 			if(!(actual_time % 10)) { // Sampling each 10s current queue size
@@ -167,7 +150,7 @@ void simulate(int days) {
 		//// Statistics update
 		stats.client_rate += client_id - 1;
 		stats.mean_response_time += tmp_mean_response_time / client_served;
-		stats.client_both += ((double) size_queue(&q)) / ((double) (client_id - 1));
+		stats.client_both += 1 - client_served / (client_id -1);//((double) size_queue(&q)) / ((double) (client_id - 1));
 		////
 		// Reseting some datas for the next day
 		actual_time = 0;
@@ -239,7 +222,6 @@ void menu() {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-<<<<<<< HEAD
 int main() {
 	menu();
 	return 0;
@@ -293,13 +275,13 @@ float random_srvtime(){
 
 
 
-
+/*
 int main(int argc, char * argv[]) {
 	if (argc != 2){
 		printf("use 'number of days' to run the simulation");
 		return 0;
 	}
-	getseed();
+getseed();
 	
 	int day = 1;
 	int time =0;
@@ -308,7 +290,6 @@ int main(int argc, char * argv[]) {
 
 
 	char * raw_file = "raw.txt", * processed_file = "processed.txt";
->>>>>>> cdb4598d10a91eaf4bd7d10a0e650e58cda3b943
 	
 	Queue * q = NULL;
 	Stack * s = NULL;
