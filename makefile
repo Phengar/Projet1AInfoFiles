@@ -12,11 +12,14 @@
 #save.o : save.c save.h
 #	gcc -c save.c
 
-#main.o : main.c queue.h save.h stack.h data.h
+#rand.o : rand.c rand.h
+#	gcc -c rand.c -lm
+
+#main.o : main.c queue.h save.h stack.h data.h rand.h
 #	gcc -c main.c
 
-#main : main.o queue.o save.o stack.o data.o
-#	gcc main.o queue.o save.o stack.o data.o -o main
+#main : main.o queue.o save.o stack.o data.o rand.o
+#	gcc main.o queue.o save.o stack.o data.o rand.o -o main
 
-main :  main.c queue.c save.c stack.c data.c
-	gcc main.c queue.c save.c stack.c data.c -o main
+main :  main.c queue.c save.c stack.c data.c rand.c
+	gcc main.c queue.c save.c stack.c data.c rand.c -lm -o main

@@ -9,8 +9,6 @@
 
 // Pushes element to stack
 void push_stack(Stack ** s, Raw * r) {
-			printf("HEY : ");
-			print_raw(r);
 	Stack * new_s = (Stack *) malloc(sizeof(Stack));
 	if(new_s == NULL) { // Handles allocation issue
 		printf("Cannot push to stack.\n");
@@ -30,6 +28,13 @@ void pop_stack(Stack ** s) {
 	Stack * tmp = *s;
 	*s = (*s)->next; // Pops stack head
 	free(tmp); // Free space allocated for previous head
+}
+
+// Frees the entire stack from memory
+void free_stack(Stack ** s) {
+	while(*s != NULL) {
+		pop_stack(s);
+	}
 }
 
 // Returns stack size

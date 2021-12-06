@@ -42,6 +42,23 @@ void pop_queue(Queue ** q, Stack ** s) {
 	free(tmp); // Free space allocated for previous head
 }
 
+int size_queue(Queue ** q) {
+	Queue * curr = *q;
+	int size = 0;
+	while(curr != NULL) {
+		size++;
+		curr = curr->next;
+	}
+	return size;
+}
+
+// Frees queue from memory
+void free_queue(Queue ** q, Stack ** s) {
+	while(*q != NULL) {
+		pop_queue(q, s);
+	}
+}
+
 // Prints queue elements
 void print_queue(Queue ** q) {
 	Queue * curr = *q;

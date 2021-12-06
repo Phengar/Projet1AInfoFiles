@@ -28,11 +28,11 @@ float random_expo(float lamb){
 	return -logf(1-random_unif())/lamb;
 }
 
-
+/*
 void main(){
 	getseed();
 	for(int i=0; i<50; i++){
 		printf("%f\n", random_expo(lambda));
 	}
 	//printf("unsigned int with good value: %c\n", t);
-}
+}*/

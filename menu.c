@@ -18,7 +18,7 @@ void disp_menu() {
 	printf(">> ");
 }
 
-int main() {
+void menu() {
 	int i = -1;
 	while(i != 0) { // Type 0 in menu to stop the program
 		disp_menu();
@@ -34,5 +34,9 @@ int main() {
 		printf("\n");
 	}
 	printf("by DAVAL Quentin - HUBINET Benjamin - ISMIN 1A - EI21\n");
+}
+
+int main() {
+	menu();
 	return 0;
 }

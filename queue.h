@@ -13,6 +13,10 @@ void push_queue(Queue ** q, Raw * r);
 
 void pop_queue(Queue ** q, Stack ** s);
 
+int size_queue(Queue ** q);
+
+void free_queue(Queue ** q, Stack ** s);
+
 void print_queue(Queue ** q);
 
 #endif

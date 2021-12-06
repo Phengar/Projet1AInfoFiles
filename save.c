@@ -28,25 +28,26 @@ void save_processed(char * fname, Processed * data) {
 		printf("Cannot open the file.\n");
 		return;
 	}
-	fprintf(file, "%d %d %d %d %d", data->mean_s, data->max_s, data->client_total, data->angry_client, data->mean_service_time);
+	fprintf(file, "%lf %d %lf %lf %lf", data->mean_s, data->max_s, data->client_rate, data->client_both, data->mean_response_time);
 	fclose(file);
 }
 
 // Loads raw data array from .txt file
 void load_raw(char * fname, Stack ** s) {
 	printf("I'm alive\n");
-	FILE * file = fopen(fname, "r");
+	FILE * file = fopen(fname, "w");
 	if(file == NULL) {
 		printf("Cannot open the file.\n");
 		return;
 	}
 	int endOfFile = 0;
-	Raw * tmp = (Raw *) malloc(sizeof(Raw));
-	if(tmp == NULL) { // Handles allocation issues
-		printf("Cannot allocate memory.\n");
-		return;
-	}
+	Raw * tmp = NULL;
 	while(endOfFile != -1) {
+		tmp = (Raw *) malloc(sizeof(Raw));
+		if(tmp == NULL) { // Handles allocation issues
+			printf("Cannot allocate memory.\n");
+			return;
+		}
 		endOfFile = fscanf(file, "%d %d %d %d %d\n", &tmp->id, &tmp->day, &tmp->at, &tmp->st, &tmp->et);
 		printf("%d %d %d %d %d %d\n", endOfFile, tmp->id, tmp->day, tmp->at, tmp->st, tmp->et);
 		if(endOfFile != -1) {
