@@ -54,7 +54,7 @@ void simulate(int days) {
 	*/
 	printf("Launching simulation...\n");
 	int actual_time = 0, client_id = 1;
-	double lambda, minserv, maxserv;
+	double lambda, minserv, maxserv, temp_double;
 	int tmp_at = 0, tmp_mean_response_time  = 0, client_served = 0;
 	int remain_time = 0, last_at = 0, queue_size = 0;
 
@@ -66,7 +66,7 @@ void simulate(int days) {
 	Queue * q = NULL; // Client stack
 	Stack * s = NULL; // To trace every client
 
-	Raw * r = NULL; // Pointer to urrent client's data
+	Raw * r = NULL; // Pointer to current client's data
 
 	//////// Parameters for the simulation ////////
 	printf("Please enter minserv maxserv in minutes :\n");
@@ -90,9 +90,14 @@ void simulate(int days) {
 			//////// Incoming clients generation ////////
 			if(last_at < HOST_TIME_LIMIT) { // New customers can come in
 
-				tmp_at = (int) (random_expo(lambda)); // Tries to generate the new client arrival time
+				temp_double = random_expo(lambda); // Tries to generate the new client arrival time
+					tmp_at = (int) temp_double;
+					//("double value: %lf s, int value %d s.\n",temp_double,tmp_at); 
 
 				if(tmp_at + last_at <= HOST_TIME_LIMIT) { // Able to generate a customer
+
+					
+
 					queue_size++; // A new customer pops in, the queue length increases
 					r = (Raw *) malloc(sizeof(Raw));
 					if(r == NULL) { // Error handling
@@ -106,21 +111,20 @@ void simulate(int days) {
 					r->st = random_int(minserv, maxserv);
 					r->et = -1; // Not known yet
 					push_queue(&q, r); // Adding the new client to queue
+
+					printf("Actual time: %ds, time taken after previous client: %ds, time of service:%d s", actual_time, tmp_at, r->st);
 					
 					client_id++;
-					actual_time += remain_time; // Ending currently served client service time
-					remain_time = 0;
 					last_at = r->at; // The new client becomes the "next" last added client
 					//printf("[+] Client : id: %d  day: %d  at: %d  st: %d  et: %d\n", r->id, r->day, r->at, r->st, r->et);
-				} else {
-					remain_time--;
+				}else{
+					last_at=HOST_TIME_LIMIT+1;
 				}
-			} else {
-				remain_time--;
 			}
+			remain_time --;
 			/////////////////////////////////////////////
 			//// Statistics
-			if(stats.max_s < queue_size) { // Calculating max queue size
+			if(stats.max_s < queue_size-1) { // Calculating max queue size
 				stats.max_s = queue_size-1;
 			}
 
