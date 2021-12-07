@@ -11,7 +11,7 @@ And statistics are done and then displayed in the console.
 - The random module : "*rand*" contains functions related to random number generation as well as a (crypto quality :p) seed generator
 - *Stack* contains all functions acting on the **Stack** data structure : Push, pop, print, free, size
 - *Queue* contains all functions acting on the **Queue** data structure : Push, pop (NB as stated earlier this func also acts on the stack), print, free, size
-- *Data* regroups the definition of **Raw** and **Processed** data structures and print, free
+- *Data* regroups the definition of **Raw** and **Processed** data structures and print, free functions
 - *Save* regroups functions that saves **Stack** contents, also we have tried to implement the possibility to use a raw data files in order to perform statistics later on. Unfortunately the function doesn't work as expected.
 
 ## Quick references :
