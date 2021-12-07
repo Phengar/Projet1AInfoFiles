@@ -44,7 +44,7 @@ And statistics are done and then displayed in the console.
 | :---      |    :----:   |          ---: |
 | save.h    | ```void save_raw(char * fname, Stack ** s)```       | Saves Stack elements **(Raw type elements)** to fname (.txt file)   |
 | save.h    | ```void save_processed(char * fname, Processed * data)```    | Saves Processed p elements ⚠️(p is a **single** element) to fname (.txt file)|
-| save.h    | ```void load_raw(char * fname, Stack ** s)``` | Loads fname (.txt file) to the Stack s |
+| save.h    | ```void load_raw(char * fname, Stack ** s)```  - 🚧 **NOT WORKING**| Loads fname (.txt file) to the Stack s - 🚧 **NOT WORKING** |
 | :---      |    :----:   |          ---: |
 | rand.h    | ```void setSeed()```| Sets a random seed for proper random number generation|
 | rand.h    | ```int random_int(int minserv, int maxserv)```| Generates a random integer between minserv and maxserv - uniform law|
