@@ -153,8 +153,8 @@ void simulate(int days) {
 		//////// New day resets ////////
 		//// Statistics update
 		stats.client_rate += client_id - 1;
-		stats.mean_response_time += tmp_mean_response_time / client_served;
-		stats.client_both += 1 - client_served / (client_id -1);//((double) size_queue(&q)) / ((double) (client_id - 1));
+		stats.mean_response_time += ((double) tmp_mean_response_time) / ((double) client_served);
+		stats.client_both += 1 - ((double) client_served) / ((double) (client_id -1));//((double) size_queue(&q)) / ((double) (client_id - 1));
 		////
 		// Reseting some datas for the next day
 		actual_time = 0;
@@ -170,10 +170,10 @@ void simulate(int days) {
 
 
 	//////// Final Statistics ////////
-	stats.mean_s /= (days * (DAY_LENGTH / 10)); // Divided by 10 comes from the sampling rate
-	stats.client_both /= days;
-	stats.mean_response_time /= days;
-	stats.client_rate /= days;
+	stats.mean_s /= (((double) days) * (((double) DAY_LENGTH) / 10)); // Divided by 10 comes from the sampling rate
+	stats.client_both /= (double) days;
+	stats.mean_response_time /= (double) days; // that's the mean of mean response times
+	stats.client_rate /= (double) days;
 
 	stats.mean_response_time = sec2min(stats.mean_response_time);
 	///////// Printing Stats /////////
