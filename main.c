@@ -88,7 +88,7 @@ void simulate(int days) {
 			//printf("<Time : %d>\n", actual_time);
 
 			//////// Incoming clients generation ////////
-			if(last_at < HOST_TIME_LIMIT) { // New customers can come in
+			if(last_at < HOST_TIME_LIMIT && actual_time>last_at) { // New customers can come in
 
 				temp_double = random_expo(lambda); // Tries to generate the new client arrival time
 					tmp_at = (int) temp_double;
