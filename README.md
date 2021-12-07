@@ -16,7 +16,7 @@ And statistics are done and then displayed in the console.
 
 ## Quick references :
 
-> ⚠️ **.txt format : ``` "%d %d %d %d %d\n" ```. If it's a Raw data file it may contain few lines.**
+> ⚠️ **.txt format : ``` "%d %d %d %d %d\n" ```. If it's a Raw data file it may contain few lines, compared to a Processed data file which contains a single line**
 
 | Module    | Function or Structure                   | Description     |
 | :---      |    :----:                   |          ---:   |
