@@ -112,7 +112,7 @@ void simulate(int days) {
 					r->et = -1; // Not known yet
 					push_queue(&q, r); // Adding the new client to queue
 
-					printf("Actual time: %ds, time taken after previous client: %ds, time of service:%d s\n", actual_time, tmp_at, r->st);
+					printf("Actual time: %ds, time taken after previous client: %ds, time of service:%d s, number of people in line: %d\n", actual_time, tmp_at, r->st, queue_size);
 					
 					client_id++;
 					last_at = r->at; // The new client becomes the "next" last added client
