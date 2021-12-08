@@ -21,7 +21,7 @@ And statistics are done and then displayed in the console.
 > We have tried to implement a function that could load a stack from a **Raw** data file, to later on perform some statistics with either some C function or program. Nonetheless, we have not been able to make this specific code work.
 
 ## Compiling and running the project
-:warning: This project only compiles on a Linux system as the *rand* module function ```void getSeed()```does a syscall : ```getrandom()``` in order to set a random generation seed
+:warning: This project only compiles on a Linux system as the *rand* module function ```void getSeed()``` does a syscall : ```getrandom()``` in order to set a random generation seed
 Except that, it compiles under **gcc**
 - Compiling :
 ```make main```
