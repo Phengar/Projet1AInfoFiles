@@ -14,9 +14,16 @@ And statistics are done and then displayed in the console.
 - *Data* regroups the definition of **Raw** and **Processed** data structures and print, free functions
 - *Save* regroups functions that saves **Stack** contents, also we have tried to implement the possibility to use a raw data files in order to perform statistics later on. Unfortunately the function doesn't work as expected.
 
+## Statistics analysis
+> First of, we ran simulations with the same parameters (Like Lambda = 1e-2 [s^(-1)], minserv = 10 min, maxserv = 50 min) but changed the simulation period from a single day to 1000 days. As expected, according to the *"Loi faible des grands nombres"* the statistics 
+  
+## Issues/ Problems
+> We have tried to implement a function that could load a stack from a **Raw** data file, to later on perform some statistics with either some C function or program. Nonetheless, we have not been able to make this specific code work.
+
 ## Quick references :
 
 > ⚠️ **.txt format : ``` "%d %d %d %d %d\n" ```. If it's a Raw data file it may contain few lines, compared to a Processed data file which contains a single line**
+In case of a **Raw** data file, you may encouter some -1 at the end of some rows, these values account for a client that has not been served.
 
 | Module    | Function or Structure                   | Description     |
 | :---      |    :----:                   |          ---:   |
