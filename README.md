@@ -15,7 +15,7 @@ And statistics are done and then displayed in the console.
 - *Save* regroups functions that saves **Stack** contents, also we have tried to implement the possibility to use a raw data files in order to perform statistics later on. Unfortunately the function doesn't work as expected.
 
 ## Statistics analysis
-> First of, we ran simulations with the same parameters (Like Lambda = 1e-2 [s^(-1)], minserv = 10 min, maxserv = 50 min) but changed the simulation period from a single day to 1000 days. As expected, according to the *"Loi faible des grands nombres"* the statistics 
+> ICI
   
 ## Issues/ Problems
 > We have tried to implement a function that could load a stack from a **Raw** data file, to later on perform some statistics with either some C function or program. Nonetheless, we have not been able to make this specific code work.
