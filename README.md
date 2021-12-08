@@ -20,10 +20,18 @@ And statistics are done and then displayed in the console.
 ## Issues/ Problems
 > We have tried to implement a function that could load a stack from a **Raw** data file, to later on perform some statistics with either some C function or program. Nonetheless, we have not been able to make this specific code work.
 
+## Compiling and running the project
+:warning: This project only compiles on a Linux system as the *rand* module function ```void getSeed()```does a syscall : ```getrandom()``` in order to set a random generation seed
+Except that, it compiles under **gcc**
+- Compiling :
+```make main```
+- Running :
+```./main```
+
 ## Quick references :
 
 > ⚠️ **.txt format : ``` "%d %d %d %d %d\n" ```. If it's a Raw data file it may contain few lines, compared to a Processed data file which contains a single line**
-In case of a **Raw** data file, you may encouter some -1 at the end of some rows, these values account for a client that has not been served.
+. In case of a **Raw** data file, you may encouter some -1 at the end of some rows, these values account for a client that has not been served.
 
 | Module    | Function or Structure                   | Description     |
 | :---      |    :----:                   |          ---:   |
