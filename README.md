@@ -2,9 +2,11 @@
 Projet d'informatique 1A Files d'attente - DAVAL Quentin - HUBINET Benjamin - 2021
 
 ## Structural choices
-> As this project's purpose was to model a checkout line, which obviously is a modular structure. It is fair that we implemented a **Queue** like data structure from a linked list structure as for its modularity. A queue structure means that push are done towards queue tail and the queue pops affect queue head. Each node of the queue structure contains relevant data about a customer (i.e. : id : its unique Id, day : the current simulation day, at : its Arrival time, st : its Service begin time, et : its End time). All these datas are kept in a **Raw** structure. Moreover, we implemented a **Processed** data structure that gathers the simulation statistics, as in our opinion it was more relevant to hold them all in a single place (structure). Furthermore, as we could be asked to simulate the queue on a long period, it is mandatory to mind every memory access, especially writing in files. Thus we implemented a **Stack** structure which acts as some cache during the simulation, containing the previous days' clients. This structure actuates whenever a client is popped from the queue. As a consequence, the queue pop function takes in two arguments, a pointer on the **Queue** as well as a pointer on the **Stack**.
+> As this project's purpose was to model a checkout line, which obviously is a modular structure
+> 
+> This project was about modeling a checkout line, therefore we used a modular stucture to represent it: a **Queue**. A queue structure means that push are done towards queue tail and the queue pops affect queue head. Each node of the queue structure contains relevant data about a customer (i.e. : id : its unique Id, day : the current simulation day, at : its Arrival time, st : its Service begin time, et : its End time). All the data is kept in a **Raw** structure. Moreover, we implemented a **Processed** data structure that gathers the simulation statistics, as in our opinion it was more relevant to hold them all in a single place (structure). Furthermore, as we could be asked to simulate the queue on a long period, it is mandatory to mind every memory access, especially writing in files. Thus we implemented a **Stack** structure which acts as a cache during the simulation, containing the previous days' clients. This structure is updated whenever a client is popped from the queue. As a consequence, the queue pop function takes two arguments, a pointer on the **Queue** as well as a pointer on the **Stack**.
 Once the simulation ends, the whole stack content is dumped in a .txt file.
-And statistics are done and then displayed in the console.
+Statistics are also done and then displayed in the console.
 
 ## Modularity choices
 > We tried to gather similar purpose functions in some .c/.h files, for reusability, clarity (quite mandatory in a group project). For instance 
@@ -12,16 +14,21 @@ And statistics are done and then displayed in the console.
 - *Stack* contains all functions acting on the **Stack** data structure : Push, pop, print, free, size
 - *Queue* contains all functions acting on the **Queue** data structure : Push, pop (NB as stated earlier this func also acts on the stack), print, free, size
 - *Data* regroups the definition of **Raw** and **Processed** data structures and print, free functions
-- *Save* regroups functions that saves **Stack** contents, also we have tried to implement the possibility to use a raw data files in order to perform statistics later on. Unfortunately the function doesn't work as expected.
+- *Save* regroups functions that saves **Stack** contents, we also tried to implement the possibility to use a raw data files in order to perform statistics later on. Unfortunately the function doesn't work as expected.
 
 ## Statistics analysis
-> ICI
+> We choosed to store the statistics about a simulation in a **struct Processed** variable to gather information throughout the simulation. When the simulation ends, we display:
+- the mean size of the queue for a 1 day simulation / the mean of the mean sizes of the queue for multiple days
+- the max queue size throughout all the days of the simulation
+- the mean number of clients per day
+- the mean rate of the clients not served
+- the mean responce time per client for a 1 day simulatin / the mean of the mean responce times for the client in a multiple days simulation
   
 ## Issues/ Problems
-> We have tried to implement a function that could load a stack from a **Raw** data file, to later on perform some statistics with either some C function or program. Nonetheless, we have not been able to make this specific code work.
+> We have tried to implement a function that could load a stack from a **Raw** data file, to later perform some statistics with either some C function or program. Nonetheless, we have not been able to make this specific code work.
 
 ## Compiling and running the project
-:warning: This project only compiles on a Linux system as the *rand* module function ```void getSeed()``` does a syscall : ```getrandom()``` in order to set a random generation seed.
+:warning: This project only compiles on a Linux system as the *rand* module function ```void getSeed()``` does a syscall : ```getrandom()``` in order to set a random generation seed
 Except that, it compiles under **gcc**
 - Compiling :
 ```make main```
